@@ -9,6 +9,6 @@ namespace petSolution.Model
         public string AnimalType { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
-        public string TimeStamp { get; set; }
+        public DateTime TimeStamp { get; set; }
     }
 }

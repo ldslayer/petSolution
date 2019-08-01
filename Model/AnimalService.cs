@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -46,13 +47,19 @@ namespace petSolution.Model
 
         public Animal Create(string _AnimalType, string _Name, string _Gender, string _TimeStamp)
         {
+
+            // DateTime Formatting
+            var formatTimeStamp = $"{_TimeStamp.Substring(0,4)}/{_TimeStamp.Substring(4, 2)}/{_TimeStamp.Substring(6,2)} {_TimeStamp.Substring(10,2)}:{_TimeStamp.Substring(12, 2)}:{_TimeStamp.Substring(12, 2)}";
+            var date = DateTime.ParseExact(formatTimeStamp, "yyyy/MM/dd HH:mm:ss", null);
+            // Test if Date is correct 
+            // Console.WriteLine($"Fecha { date }");
             // Create an animal with passed parameters
             Animal animal = new Animal()
             {
                 AnimalType = _AnimalType,
                 Name = _Name,
                 Gender = _Gender,
-                TimeStamp = _TimeStamp
+                TimeStamp = date
             };
 
             animals.Add(animal);
@@ -67,7 +74,12 @@ namespace petSolution.Model
 
         public List<Animal> Search()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Search Start ...");
+            var resultList = animals.Where(animal => animal.AnimalType == arguments.Type
+                                                    || animal.Name == arguments.Name
+                                                    || animal.Gender == arguments.Gender).ToList();
+            Console.WriteLine("Search request has been completed");
+            return resultList;
         }
     }
 }

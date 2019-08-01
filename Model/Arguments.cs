@@ -23,15 +23,15 @@ namespace petSolution.Model
 
                 // receiving the parameters from comand Line
 
-                if (arg.ToUpperInvariant().Contains("type"))
+                if (arg.Contains("type"))
                 {
                     this.Type = arg.Split("=")[1];
                 }
-                if (arg.ToUpperInvariant().Contains("name"))
+                if (arg.Contains("name"))
                 {
                     this.Name = arg.Split("=")[1];
                 }
-                if (arg.ToUpperInvariant().Contains("gender"))
+                if (arg.Contains("gender"))
                 {
                     this.Gender = arg.Split("=")[1];
                 }
