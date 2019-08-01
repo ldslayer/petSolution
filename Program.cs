@@ -1,4 +1,6 @@
-﻿using System;
+﻿using petSolution.Model;
+using System;
+using System.Collections.Generic;
 
 namespace petSolution
 {
@@ -6,7 +8,20 @@ namespace petSolution
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // Require the console Arguments
+            var arguments = new Arguments(args);
+            var animals = new List<Animal>();
+            IAnimalService animalService = new AnimalService(animals, arguments);
+            var resultList = animalService.GetAll();
+            Console.WriteLine($"Search Results: \n");
+            Console.WriteLine($"|   Type    |   Name    |   Gender  |   Date    |");
+            foreach (var item in resultList)
+            {
+                Console.WriteLine($"|   {item.AnimalType}    |   {item.Name}    |   {item.Gender}  |   {item.TimeStamp}    |");
+            }
+
+            Console.ReadLine();
+
         }
     }
 }
